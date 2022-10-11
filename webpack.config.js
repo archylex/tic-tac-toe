@@ -15,7 +15,7 @@ const config = {
     styles: './src/styles.scss'
   },
   output: {
-    path: path.resolve(__dirname, "dist"),
+    path: path.resolve(__dirname, "docs"),
   },
   performance: {
     hints: false,
