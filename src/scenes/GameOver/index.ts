@@ -32,36 +32,45 @@ export class GameOver extends Scene {
         const frame = sign === 'x' ? 'cross-7' : 'null-7';
 
         this.signSprite = this.add.sprite(this.width/2, this.height/2, 'sprite', frame);
-        this.signSprite.displayWidth = this.height/5;
-        this.signSprite.displayHeight = this.height/5;
+        const spriteScale = this.height * 0.185 / this.signSprite.height;
+        this.signSprite.setScale(spriteScale);
         
-        this.label = this.add.text(this.width/2, this.height/2, message, { font: "40px Arial", color: '#ffffff' });
-        this.label.setAlign('center')
+        this.label = this.add.text(this.width/2, this.height/2, message);
+        this.label.setColor('#ffffff');
+        this.label.setFontFamily('Arial');
+        this.label.setFontSize(this.height*0.05);
+        this.label.setAlign('center');
         this.label.setOrigin(0.5, 0.5);
         this.label.alpha = 0;
 
-        this.shareLabel = this.add.text(this.width/2, this.height*1.2, 'Поделитесь игрой с \n друзьями', { font: "14px Arial", color: '#ffffff', align: 'right' });
+        this.shareLabel = this.add.text(this.width/2, this.height*1.2, 'Поделитесь игрой с \n друзьями');
+        this.shareLabel.setFontSize(this.height * 0.0175);
+        this.shareLabel.setFontFamily('Arial');
+        this.shareLabel.setColor('#ffffff');
+        this.shareLabel.setAlign('right');
         this.shareLabel.setOrigin(1, 0.5);
 
         const pos: Point = {x: this.width/2, y: this.height * 1.2};
         
         this.restartButton = new TextButton(this, 'Играть еще', pos, this.restartGame.bind(this));
+        this.restartButton.btnWidth = this.height * 0.09;
+        this.restartButton.btnWidth = this.restartButton.btnHeight * 3.9;
         this.restartButton.initButton(); 
 
-        const vkBtnPos: Point = {x: this.width/2 + 52, y: this.height * 1.2};
-        const fbBtnPos: Point = {x: this.width/2 + 116, y: this.height * 1.2};
+        const vkBtnPos: Point = {x: this.width/2 + this.restartButton.btnWidth * 0.2143, y: this.height * 1.2};
+        const fbBtnPos: Point = {x: this.width/2 + this.restartButton.btnWidth * 0.4286, y: this.height * 1.2};
         
         this.fbButton = new ImageButton(this, 'fb', fbBtnPos, this.restartGame.bind(this));
         this.fbButton.backgroundColor = 0xa11c22;
-        this.fbButton.btnHeight = 48;
-        this.fbButton.btnWidth = 48;
+        this.fbButton.btnHeight = this.height * 0.0575;
+        this.fbButton.btnWidth = this.height * 0.0575;
         this.fbButton.thickness = 0;
         this.fbButton.initButton(); 
         
         this.vkButton = new ImageButton(this, 'vk', vkBtnPos, this.restartGame.bind(this));
         this.vkButton.backgroundColor = 0xa11c22;
-        this.vkButton.btnHeight = 48;
-        this.vkButton.btnWidth = 48;
+        this.vkButton.btnHeight = this.height * 0.0575;
+        this.vkButton.btnWidth = this.height * 0.0575;
         this.vkButton.thickness = 0;
         this.vkButton.initButton(); 
 
@@ -130,7 +139,7 @@ export class GameOver extends Scene {
             ease: 'Sine.easeInOut',
             delay: 2200,
             onStart: () => {
-                this.restartButton.slideY(this.height*1.2, this.height * 0.82, 500);  
+                this.restartButton.slideY(this.height*1.2, this.height * 0.825, 500);  
                 this.fbButton.slideY(this.height*1.2, this.height * 0.92, 500);  
                 this.vkButton.slideY(this.height*1.2, this.height * 0.92, 500);  
             }                      
@@ -161,7 +170,7 @@ export class GameOver extends Scene {
             duration: 500,            
             ease: 'Sine.easeInOut',
             onStart: () => {
-                this.restartButton.slideY(this.height * 0.82, this.height*1.2, 500);  
+                this.restartButton.slideY(this.height * 0.825, this.height*1.2, 500);  
                 this.fbButton.slideY(this.height * 0.92, this.height*1.2, 500);  
                 this.vkButton.slideY(this.height * 0.92, this.height*1.2, 500);  
             },

@@ -5,6 +5,7 @@ export class Logo {
     private scene: Scene; 
     private graphics: GameObjects.Graphics;
     private position: Point;
+    public height: number = 78;
 
     constructor(scene: Scene, position: Point) {
         this.scene = scene;
@@ -15,13 +16,13 @@ export class Logo {
     }
 
     private drawLogo() {
-        const btnWidth = 230;
-        const btnHeight = 74;
-        const offsetPic = 12;
+        const width = this.height * 2.97435;
+        const offsetPic = this.height * 0.1538;
         this.graphics.fillStyle(0x353535, 0.2);
-        this.graphics.fillRoundedRect(this.position.x-btnWidth/2, this.position.y-btnHeight/2, btnWidth, btnHeight, 36);
+        this.graphics.fillRoundedRect(this.position.x, this.position.y, width, this.height, 36);
         
-        const logo = this.scene.add.sprite(this.position.x-offsetPic, this.position.y, 'logo');
+        const logo = this.scene.add.sprite(this.position.x+offsetPic/2, this.position.y+offsetPic/2, 'logo');
+        logo.setOrigin(0,0)
        
     }
 }

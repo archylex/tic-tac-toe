@@ -39,6 +39,8 @@ export class GameScene extends Scene {
 
         // hand hint
         this.handSprite = this.add.sprite(this.width/2, this.height/2, 'hand');
+        const handScale = (this.height * 0.105) / this.handSprite.height;
+        this.handSprite.setScale(handScale);
 
         this.tweens.add({
             targets: [this.handSprite],  

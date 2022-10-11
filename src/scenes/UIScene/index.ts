@@ -19,7 +19,9 @@ export class UIScene extends Scene {
         this.height = Number(this.game.config.height);
         this.width = Number(this.game.config.width);
 
-        const logo = new Logo(this,{x:this.width/2-200+100, y:45});
+        const logo = new Logo(this,{x:18, y:10});
+        logo.height = this.height * 0.0975;
+
 
         this.events.on('showhint', () => {
             this.showHint();
@@ -41,21 +43,25 @@ export class UIScene extends Scene {
         const bottomHintPos = this.height * 0.9; 
         
         this.continueHintText = this.add.text(this.width/2, bottomHintPos,
-        'Нажмите, чтобы продолжить',
-        { font: "18px Arial", color: '#ffffff' });
+        'Нажмите, чтобы продолжить');
+        this.continueHintText.setFontFamily('Arial');
+        this.continueHintText.setColor('#ffffff');
+        this.continueHintText.setFontSize(this.height * 0.0225);
         this.continueHintText.setAlign('center')
         this.continueHintText.setOrigin(0.5, 0.5);
         this.continueHintText.alpha = 0;
 
         this.hintText = this.add.text(this.width/2, 0,
-        'Для победы постарайтесь\nвыставить в ряд 5\nкрестиков по горизонтали,\nвертикали или диагонали',
-        { font: "32px Arial", color: '#ffffff' });
-        this.hintText.setAlign('center')
-        this.hintText.setOrigin(0.5, 0.5);
+        'Для победы постарайтесь\nвыставить в ряд 5\nкрестиков по горизонтали,\nвертикали или диагонали');
+        this.hintText.setFontFamily('Arial');
+        this.hintText.setColor('#ffffff');
+        this.hintText.setFontSize(this.height * 0.04);
+        this.hintText.setAlign('center');
+        this.hintText.setOrigin(0.5, 1);
         this.hintText.alpha = 0;
 
-        const startPos = this.height/2 - this.hintText.height * 3/4 
-        const endPos = this.height/2 - this.hintText.height/2;
+        const startPos = this.height/2 - this.hintText.height / 4; 
+        const endPos = this.height/2;
 
         this.tweens.add({
             targets: [this.hintText],      
@@ -68,7 +74,7 @@ export class UIScene extends Scene {
                 getStart: () => startPos,
                 getEnd: () => endPos
             },
-            duration: 700,            
+            duration: 500,            
             ease: 'Sine.easeInOut'            
         }); 
 
@@ -89,8 +95,8 @@ export class UIScene extends Scene {
     }
 
     public hideHint(): void {
-        const startPos = this.height/2 - this.hintText.height * 3/4 
-        const endPos = this.height/2 - this.hintText.height/2;        
+        const startPos = this.height/2 - this.hintText.height / 4; 
+        const endPos = this.height/2;        
        
         this.tweens.add({
             targets: [this.hintText],      
@@ -103,7 +109,7 @@ export class UIScene extends Scene {
                 getStart: () => endPos,
                 getEnd: () => startPos
             },
-            duration: 700,            
+            duration: 500,            
             ease: 'Sine.easeInOut'            
         }); 
 

@@ -40,7 +40,6 @@ export class SimpleBot {
         }
         
         // check possible opponent combination     
-        console.log('oppo', opponentWinCell.empty, opponentWinCell.count)   
         if (opponentWinCell.count >= 2) {
             if (opponentWinCell.empty.x >= 0 && opponentWinCell.empty.y >= 0) {
                 return opponentWinCell.empty;

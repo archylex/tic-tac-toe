@@ -24,11 +24,14 @@ export class ImageButton extends Button {
 
         this.sprite = this.scene.add.sprite(this.position.x, this.position.y, this.image);
 
+        const scaler = (this.btnHeight * 0.96) / this.sprite.height;
+        this.sprite.setScale(scaler);
+
         this.graphics.on('pointerdown', () => {
-            this.sprite.setScale(this.btnScale);
+            this.sprite.setScale(this.btnScale * scaler);
         })
         .on('pointerup', () => {
-            this.sprite.setScale(1);
+            this.sprite.setScale(scaler);
         });   
     }
 

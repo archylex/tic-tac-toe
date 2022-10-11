@@ -12,14 +12,9 @@ export class StartMenuScene extends Scene {
     private spriteO!: GameObjects.Sprite;
     private startSingleButton!: TextButton;
     private startFriendButton!: TextButton;
-    private topPadding: number = 40;
-    private spriteOffsetY: number = 88;
-    private gamepadOffsetX: number = 162;
-    private buttonOffsetX: number = 55;
-    private buttonOffsetY: number = 132;
     private gamepadPos!: Point;
-    private btnPos!: Point;
-    private secondBtnPos!: Point;
+    private singleButtonPos!: Point;
+    private friendButtonPos!: Point;
 
     constructor() {
         super(SCENE_NAME.SCENE_STARTMENU);          
@@ -38,40 +33,41 @@ export class StartMenuScene extends Scene {
     }
 
     public createStartMenu(): void {        
-        const btnOffsetY = this.buttonOffsetY + this.spriteOffsetY;        
-        const offsetY = (this.topPadding + this.height - btnOffsetY) / 2;
-        this.btnPos = {x: this.width/2 + this.buttonOffsetX, y: this.height - btnOffsetY};
+        const spriteOffsetX = this.width * 0.04;
         
-        this.spriteX = this.add.sprite(this.width/2, offsetY, 'sprite', 'cross-7');
-        const scale = this.height / this.spriteX.height / 3 ;
-        const spriteOffsetX = this.spriteX.width / 4;
-        this.spriteX.setX(this.width/2 + spriteOffsetX);
-        
+        this.spriteX = this.add.sprite(this.width/2 - spriteOffsetX, this.height/2, 'sprite', 'cross-7');                     
+        const scale = this.height * 0.225 / this.spriteX.height;
         this.spriteX.setScale(scale);
-        this.spriteX.setOrigin(1,0.5);
+        this.spriteX.setOrigin(1,1);
         
-        this.spriteO = this.add.sprite(this.width/2 + spriteOffsetX, offsetY, 'sprite', 'null-7');
-        
+        this.spriteO = this.add.sprite(this.width/2 + spriteOffsetX, this.height/2, 'sprite', 'null-7');        
         this.spriteO.setScale(scale);
-        this.spriteO.setOrigin(0,0.5);
+        this.spriteO.setOrigin(0,1);
+
+        this.singleButtonPos = {x: this.width * 0.609, y: this.height * 0.73};
         
-        this.startSingleButton = new TextButton(this, 'Одиночная', this.btnPos, this.startGame.bind(this));
+        this.startSingleButton = new TextButton(this, 'Одиночная', this.singleButtonPos, this.startGame.bind(this));
+        this.startSingleButton.btnHeight = this.height * 0.09;
+        this.startSingleButton.btnWidth = this.startSingleButton.btnHeight * 3.9;
+        this.startSingleButton.textSize = this.startSingleButton.btnHeight / 2;
         this.startSingleButton.initButton();
 
-        this.secondBtnPos = JSON.parse(JSON.stringify(this.btnPos));
-        this.secondBtnPos.y = this.height - this.buttonOffsetY;
+        this.friendButtonPos = {x: this.width * 0.609, y: this.height * 0.8375};        
 
-        this.startFriendButton = new TextButton(this, 'С другом', this.secondBtnPos, this.startGame.bind(this));
+        this.startFriendButton = new TextButton(this, 'С другом', this.friendButtonPos, this.startGame.bind(this));
+        this.startFriendButton.btnHeight = this.height * 0.09;
+        this.startFriendButton.btnWidth = this.startSingleButton.btnHeight * 3.9;
+        this.startFriendButton.textSize = this.startSingleButton.btnHeight / 2;
         this.startFriendButton.initButton();
 
-        this.gamepadPos = {x: this.width/2 - this.gamepadOffsetX, y: this.btnPos.y};
+        this.gamepadPos = { x: this.width * 0.2, y: this.height * 0.73 };
 
         this.startGameButton = new ImageButton(this, 'gamepad', this.gamepadPos, this.startGame.bind(this));
-        this.startGameButton.btnHeight = 86;
-        this.startGameButton.btnWidth = 86;
+        this.startGameButton.btnHeight = this.height * 0.1075;
+        this.startGameButton.btnWidth = this.height * 0.1075;
         this.startGameButton.btnScale = 0.98;
         this.startGameButton.thickness = 2;
-        this.startGameButton.initButton();
+        this.startGameButton.initButton();        
     }
 
     public show(duration: number): void {
@@ -88,8 +84,8 @@ export class StartMenuScene extends Scene {
 
         const hideOffset = 300;
         this.startGameButton.slideY(this.gamepadPos.y+hideOffset, this.gamepadPos.y, duration);
-        this.startFriendButton.slideY(this.secondBtnPos.y+hideOffset, this.secondBtnPos.y, duration);
-        this.startSingleButton.slideY(this.btnPos.y+hideOffset, this.btnPos.y, duration);   
+        this.startFriendButton.slideY(this.friendButtonPos.y+hideOffset, this.friendButtonPos.y, duration);
+        this.startSingleButton.slideY(this.singleButtonPos.y+hideOffset, this.singleButtonPos.y, duration);   
     }
 
     public hide(duration: number): void {
@@ -109,8 +105,8 @@ export class StartMenuScene extends Scene {
 
         const hideOffset = 300;
         this.startGameButton.slideY(this.gamepadPos.y, this.gamepadPos.y+hideOffset, duration);
-        this.startFriendButton.slideY(this.secondBtnPos.y, this.secondBtnPos.y+hideOffset, duration);
-        this.startSingleButton.slideY(this.btnPos.y, this.btnPos.y+hideOffset, duration);   
+        this.startFriendButton.slideY(this.friendButtonPos.y, this.friendButtonPos.y+hideOffset, duration);
+        this.startSingleButton.slideY(this.singleButtonPos.y, this.singleButtonPos.y+hideOffset, duration);   
     }
 
     public startGame() {

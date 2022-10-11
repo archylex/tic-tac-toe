@@ -9,6 +9,9 @@ export class TextButton extends Button {
     protected position: Point;
     protected onClickAction: Function;
     protected text: string;
+    public textSize: number = 36;
+    public textColor: string = '#ae302b';
+    public textFont: string = 'Arial';
 
     constructor(scene: Scene, text: string, position: Point, callback: Function) {
         super(scene, position, callback);
@@ -22,8 +25,12 @@ export class TextButton extends Button {
     public initButton() {
         super.initButton();
 
-        this.label = this.scene.add.text(this.position.x, this.position.y, this.text)
-        .setStyle({ font: "36px Arial", fill: "#ae302b", align: "center" }).setOrigin(0.5,0.5);
+        this.label = this.scene.add.text(this.position.x, this.position.y, this.text);
+        this.label.setFontFamily(this.textFont);
+        this.label.setAlign('center');
+        this.label.setOrigin(0.5,0.5);
+        this.label.setFontSize(this.textSize);
+        this.label.setColor(this.textColor);
 
         const offsetXBtn = this.btnWidth * (1 - this.btnScale) / 2;
         const offsetYBtn = this.btnHeight * (1 - this.btnScale) / 2;
