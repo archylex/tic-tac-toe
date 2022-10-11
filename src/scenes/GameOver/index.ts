@@ -78,7 +78,7 @@ export class GameOver extends Scene {
         // show and scale sign
         this.tweens.add({
             targets: [this.signSprite],  
-            scale: 2,          
+            scale: 2  * spriteScale/1.8,          
             yoyo: false,
             alpha: {
                 getStart: () => 0,
@@ -90,7 +90,7 @@ export class GameOver extends Scene {
                 // scale back
                 this.tweens.add({
                     targets: [this.signSprite],  
-                    scale: 1.8,          
+                    scale: 1.8 * spriteScale/1.8,          
                     yoyo: false,                    
                     duration: 300,            
                     ease: 'Sine.easeInOut',
