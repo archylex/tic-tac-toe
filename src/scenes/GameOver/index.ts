@@ -53,12 +53,13 @@ export class GameOver extends Scene {
         const pos: Point = {x: this.width/2, y: this.height * 1.2};
         
         this.restartButton = new TextButton(this, 'Играть еще', pos, this.restartGame.bind(this));
-        this.restartButton.btnWidth = this.height * 0.09;
+        this.restartButton.btnHeight = this.height * 0.09;
         this.restartButton.btnWidth = this.restartButton.btnHeight * 3.9;
+        this.restartButton.textSize = this.restartButton.btnHeight / 2;
         this.restartButton.initButton(); 
 
         const vkBtnPos: Point = {x: this.width/2 + this.restartButton.btnWidth * 0.2143, y: this.height * 1.2};
-        const fbBtnPos: Point = {x: this.width/2 + this.restartButton.btnWidth * 0.4286, y: this.height * 1.2};
+        const fbBtnPos: Point = {x: this.width/2 + this.restartButton.btnWidth * 0.431, y: this.height * 1.2};
         
         this.fbButton = new ImageButton(this, 'fb', fbBtnPos, this.restartGame.bind(this));
         this.fbButton.backgroundColor = 0xa11c22;

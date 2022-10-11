@@ -82,7 +82,7 @@ export class StartMenuScene extends Scene {
             ease: 'Sine.easeInOut'            
         }); 
 
-        const hideOffset = 300;
+        const hideOffset = this.height*1.2;
         this.startGameButton.slideY(this.gamepadPos.y+hideOffset, this.gamepadPos.y, duration);
         this.startFriendButton.slideY(this.friendButtonPos.y+hideOffset, this.friendButtonPos.y, duration);
         this.startSingleButton.slideY(this.singleButtonPos.y+hideOffset, this.singleButtonPos.y, duration);   
@@ -103,7 +103,7 @@ export class StartMenuScene extends Scene {
             }
         }); 
 
-        const hideOffset = 300;
+        const hideOffset = this.height*1.2;
         this.startGameButton.slideY(this.gamepadPos.y, this.gamepadPos.y+hideOffset, duration);
         this.startFriendButton.slideY(this.friendButtonPos.y, this.friendButtonPos.y+hideOffset, duration);
         this.startSingleButton.slideY(this.singleButtonPos.y, this.singleButtonPos.y+hideOffset, duration);   

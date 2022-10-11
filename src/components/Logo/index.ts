@@ -5,7 +5,7 @@ export class Logo {
     private scene: Scene; 
     private graphics: GameObjects.Graphics;
     private position: Point;
-    public height: number = 78;
+    private height: number = 78;
 
     constructor(scene: Scene, position: Point) {
         this.scene = scene;

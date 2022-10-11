@@ -19,9 +19,7 @@ export class UIScene extends Scene {
         this.height = Number(this.game.config.height);
         this.width = Number(this.game.config.width);
 
-        const logo = new Logo(this,{x:18, y:10});
-        logo.height = this.height * 0.0975;
-
+        const logo = new Logo(this, {x:18, y:10});
 
         this.events.on('showhint', () => {
             this.showHint();
