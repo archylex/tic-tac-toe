@@ -27,7 +27,7 @@ export class ImageButton extends Button {
         const scaler = (this.btnHeight * 0.96) / this.sprite.height;
         this.sprite.setScale(scaler);
 
-        this.graphics.on('pointerdown', () => {
+        this.rectSprite.on('pointerdown', () => {
             this.sprite.setScale(this.btnScale * scaler);
         })
         .on('pointerup', () => {

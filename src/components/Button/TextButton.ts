@@ -25,25 +25,23 @@ export class TextButton extends Button {
     public initButton() {
         super.initButton();
 
-        this.label = this.scene.add.text(this.position.x, this.position.y, this.text);
+        this.label = this.scene.add.text(0, 0, this.text);
         this.label.setFontFamily(this.textFont);
         this.label.setAlign('center');
         this.label.setOrigin(0.5,0.5);
         this.label.setFontSize(this.textSize);
         this.label.setColor(this.textColor);
+        this.label.setX(this.position.x);
 
-        const offsetXBtn = this.btnWidth * (1 - this.btnScale) / 2;
-        const offsetYBtn = this.btnHeight * (1 - this.btnScale) / 2;
-
-        this.graphics.on('pointerdown', () => {
+        this.rectSprite.on('pointerdown', () => {
             this.label.setScale(this.btnScale);
-            this.label.setX(this.label.x + offsetXBtn);
-            this.label.setY(this.label.y + offsetYBtn);
+            this.label.setX(this.label.x);
+            this.label.setY(this.label.y );
         })
         .on('pointerup', () => {
             this.label.setScale(1);
-            this.label.setX(this.label.x - offsetXBtn);
-            this.label.setY(this.label.y - offsetYBtn);
+            this.label.setX(this.label.x);
+            this.label.setY(this.label.y);
         });   
     }
 

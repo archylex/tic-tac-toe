@@ -5,7 +5,5 @@ export interface IButton {
     thickness: number;
     backgroundColor: number;
     initButton:() => void;
-    show:(duration: number) => void;
-    hide:(duration: number) => void;
     slideY:(startPos: number, endPos: number, duration: number) => void ;
 }

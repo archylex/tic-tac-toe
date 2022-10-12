@@ -23,8 +23,10 @@ export class Board {
     private vLines: GameObjects.Rectangle[];
     private cellSprites: GameObjects.Sprite[][];
     private signs: Sign = {
-        'x': 'cross',
-        'o': 'null'
+        //'x': 'cross',
+        //'o': 'null'
+        'x': 'CrossShape',
+        'o': 'CircleShape'
     };
 
     constructor(scene: Phaser.Scene, boardSize: number, boardWidth: number) {

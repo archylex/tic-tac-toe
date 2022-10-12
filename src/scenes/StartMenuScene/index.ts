@@ -15,7 +15,7 @@ export class StartMenuScene extends Scene {
     private gamepadPos!: Point;
     private singleButtonPos!: Point;
     private friendButtonPos!: Point;
-
+    
     constructor() {
         super(SCENE_NAME.SCENE_STARTMENU);          
     }
@@ -29,20 +29,19 @@ export class StartMenuScene extends Scene {
         this.spriteX.alpha = 0;
         this.spriteO.alpha = 0;
 
-        this.show(400);
+        this.show(400);          
     }
 
     public createStartMenu(): void {        
-        const spriteOffsetX = this.width * 0.04;
-        
-        this.spriteX = this.add.sprite(this.width/2 - spriteOffsetX, this.height/2, 'sprite', 'cross-7');                     
+        this.spriteX = this.add.sprite(this.width/2, this.height/2, 'CrossShape', 'CrossShape-12');
+
         const scale = this.height * 0.225 / this.spriteX.height;
         this.spriteX.setScale(scale);
         const signGap = this.spriteX.width/4;
         this.spriteX.setOrigin(1,1);
         this.spriteX.setX(this.width/2-signGap);
         
-        this.spriteO = this.add.sprite(this.width/2 + signGap, this.height/2, 'sprite', 'null-7');        
+        this.spriteO = this.add.sprite(this.width/2, this.height/2, 'CircleShape', 'CircleShape-12');        
         this.spriteO.setScale(scale);
         this.spriteO.setOrigin(0,1);
 
@@ -65,6 +64,7 @@ export class StartMenuScene extends Scene {
         this.gamepadPos = { x: this.width * 0.609 - this.startFriendButton.btnWidth*0.75, y: this.height * 0.73 };
 
         this.startGameButton = new ImageButton(this, 'gamepad', this.gamepadPos, this.startGame.bind(this));
+        this.startGameButton.btnSprite = 'RoundQuadShape';
         this.startGameButton.btnHeight = this.height * 0.1075;
         this.startGameButton.btnWidth = this.height * 0.1075;
         this.startGameButton.btnScale = 0.98;
