@@ -10,7 +10,7 @@ export class GameLogic {
     private expansePercent: number;
     private win: number;
 
-    constructor(size: number, win: number = 5, expanse: number = 0.7) {
+    constructor(size: number = 5, win: number = 5, expanse: number = 0.7) {
         this.board = this.board = new Array(size).fill('').map(e => e = new Array(size).fill(''));
         this.size = size;
         this.expansePercent = expanse;

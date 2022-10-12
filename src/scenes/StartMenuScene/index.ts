@@ -38,9 +38,11 @@ export class StartMenuScene extends Scene {
         this.spriteX = this.add.sprite(this.width/2 - spriteOffsetX, this.height/2, 'sprite', 'cross-7');                     
         const scale = this.height * 0.225 / this.spriteX.height;
         this.spriteX.setScale(scale);
+        const signGap = this.spriteX.width/4;
         this.spriteX.setOrigin(1,1);
+        this.spriteX.setX(this.width/2-signGap);
         
-        this.spriteO = this.add.sprite(this.width/2 + spriteOffsetX, this.height/2, 'sprite', 'null-7');        
+        this.spriteO = this.add.sprite(this.width/2 + signGap, this.height/2, 'sprite', 'null-7');        
         this.spriteO.setScale(scale);
         this.spriteO.setOrigin(0,1);
 
@@ -60,7 +62,7 @@ export class StartMenuScene extends Scene {
         this.startFriendButton.textSize = this.startSingleButton.btnHeight / 2;
         this.startFriendButton.initButton();
 
-        this.gamepadPos = { x: this.width * 0.2, y: this.height * 0.73 };
+        this.gamepadPos = { x: this.width * 0.609 - this.startFriendButton.btnWidth*0.75, y: this.height * 0.73 };
 
         this.startGameButton = new ImageButton(this, 'gamepad', this.gamepadPos, this.startGame.bind(this));
         this.startGameButton.btnHeight = this.height * 0.1075;
